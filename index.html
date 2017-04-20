@@ -2,24 +2,36 @@
 <html lang="en">
   <head>
     <title>Narrow Down Your Menu Choice</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
   </head>
-<body>
-   <div class="container">
+<body ng-app="NarrowItDownApp">
+   <div class="container" ng-controller="NarrowItDownController as list">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
     <div class="form-group">
-      <input type="text" placeholder="search term" class="form-control">
+      <input type="text" placeholder="search term" ng-model="list.description" class="form-control">
     </div>
     <div class="form-group narrow-button">
-      <button class="btn btn-primary">Narrow It Down For Me!</button>
+      <button class="btn btn-primary" ng-click="list.foundMenu()">Narrow It Down For Me!</button>
     </div>
-
+    </br>
+    </br>
+    </br>
+    <ul>
+      <li ng-repeat="foundList in list.foundItems">
+        <span>({{foundList.short_name}}) {{foundList.name}}-{{foundList.short_name}},{{foundList.description}}</span>
+        </br>
+        <button class="btn btn-primary btn-xs" ng-click="list.onRemove({index : $index})">Don't want this one!</button>
+        </br>
+      </li>
+    </ul>
     <!-- found-items should be implemented as a component -->
-    <found-items found-items="...." on-remove="...."></found-items>
-  </div>
-
+    <found-items items="list.found" on-remove="list.removeItem(index)"></found-items>
+   </div>
 </body>
 </html>
