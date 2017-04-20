@@ -19,19 +19,10 @@
     <div class="form-group narrow-button">
       <button class="btn btn-primary" ng-click="list.foundMenu()">Narrow It Down For Me!</button>
     </div>
-    </br>
-    </br>
-    </br>
-    <ul>
-      <li ng-repeat="foundList in list.foundItems">
-        <span>({{foundList.short_name}}) {{foundList.name}}-{{foundList.short_name}},{{foundList.description}}</span>
-        </br>
-        <button class="btn btn-primary btn-xs" ng-click="list.onRemove({index : $index})">Don't want this one!</button>
-        </br>
-      </li>
-    </ul>
     <!-- found-items should be implemented as a component -->
-    <found-items items="list.found" on-remove="list.removeItem(index)"></found-items>
+    <found-items
+      items="list.found"
+      on-remove="list.removeItem(index)"></found-items>
    </div>
 </body>
 </html>

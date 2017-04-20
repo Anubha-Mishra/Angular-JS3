@@ -8,7 +8,7 @@
 
   function FoundItems() {
     var ddo = {
-    templateUrl: 'loader/itemsloaderindicator.html',
+    templateUrl: 'itemsList.html',
     scope: {
       items: '<',
       onRemove: '&'
@@ -38,7 +38,7 @@
     }
 
     list.removeItem = function(itemIndex) {
-      list.found = list.found.splice(itemIndex,1);
+      list.found.splice(itemIndex,1);
     }
   }
 
