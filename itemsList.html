@@ -2,7 +2,7 @@
 <ol>
   <li ng-repeat="foundList in list.items">
     <div>({{foundList.short_name}})</div>
-    <div> {{foundList.name}}-{{foundList.description}}</div>
+    <div><span class="itemName">{{foundList.name}}</span> - {{foundList.description}}</div>
     <button class="btn btn-primary btn-xs" ng-click="list.onRemove({index : $index})">Don't want this one!</button>
     </br>
     </br>

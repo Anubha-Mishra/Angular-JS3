@@ -63,3 +63,7 @@ ol:after {
   display: block;
   content: "";
 }
+.itemName {
+  color: green;
+  font-weight: bold;
+}
