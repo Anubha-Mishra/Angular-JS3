@@ -8,16 +8,16 @@
 
   function FoundItems() {
     var ddo = {
-    templateUrl: 'itemsList.html',
-    scope: {
-      items: '<',
-      onRemove: '&'
-    },
-    controller: NarrowItDownController,
-    controllerAs: 'list',
-    bindToController: true
-  };
-  return ddo;
+      templateUrl: 'itemsList.html',
+      scope: {
+        items: '<',
+        onRemove: '&'
+      },
+      controller: NarrowItDownController,
+      controllerAs: 'list',
+      bindToController: true
+    };
+    return ddo;
   }
 
   NarrowItDownController.$inject = ['MenuSearchService'];
@@ -26,15 +26,23 @@
     var list = this;
 
     list.description = "";
-
     list.foundMenu = function() {
-      var promise = MenuSearchService.getMatchedMenuItems(list.description);
 
-      promise.then(function (response) {
-        list.found = response;
-      }).catch(function (error) {
-        console.log("Something went terribly wrong.");
-      });
+      if((list.description != null) && (list.description != "")) {
+        list.error = false;
+        var promise = MenuSearchService.getMatchedMenuItems(list.description);
+
+        promise.then(function (response) {
+          list.found = response;
+        }).catch(function (error) {
+          console.log("Something went terribly wrong.");
+        });
+      }
+      else {
+        list.error = true;
+        list.message = "Nothing Found";
+      }
+
     }
 
     list.removeItem = function(itemIndex) {
@@ -51,20 +59,15 @@
         method: "GET",
         url: "https://davids-restaurant.herokuapp.com/menu_items.json"
         }).then(function (response) {
-          if((searchTerm != null) && (searchTerm != "")) {
-            var menuList = response.data.menu_items;
-            var foundItems = [];
+          var menuList = response.data.menu_items;
+          var foundItems = [];
 
-            for(var i in menuList) {
-              if(menuList[i].description.indexOf(searchTerm) > -1) {
-                foundItems.push(menuList[i]);
-              }
+          for(var i in menuList) {
+            if(menuList[i].description.indexOf(searchTerm) > -1) {
+              foundItems.push(menuList[i]);
             }
-            return foundItems;
           }
-          else {
-            console.log("Nothing Found");
-          }
+          return foundItems;
         }).catch(function (error) {
           console.log("Something went terribly wrong.");
         });

@@ -1,7 +1,10 @@
-
-  <ul>
-    <li ng-repeat="foundList in list.items">
-      <span>({{foundList.short_name}}) {{foundList.name}}-{{foundList.short_name}},{{foundList.description}}</span>
-      <button class="btn btn-primary btn-xs" ng-click="list.onRemove({index : $index})">Don't want this one!</button>
-    </li>
-  </ul>
+<div class="loader"></div>
+<ol>
+  <li ng-repeat="foundList in list.items">
+    <div>({{foundList.short_name}})</div>
+    <div> {{foundList.name}}-{{foundList.description}}</div>
+    <button class="btn btn-primary btn-xs" ng-click="list.onRemove({index : $index})">Don't want this one!</button>
+    </br>
+    </br>
+  </li>
+</ol>

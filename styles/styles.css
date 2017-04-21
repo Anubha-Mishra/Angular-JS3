@@ -3,10 +3,12 @@ h1 {
 }
 input[type="text"] {
   width: 200px;
+}
+.input-box {
+  width: 210px;
   float: left;
 }
 .narrow-button {
-  float: left;
   margin-left: 10px;
 }
 .loader {
@@ -49,4 +51,15 @@ input[type="text"] {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.error {
+  width: 385px;
+  font-size: 2em;
+  color: red;
+  text-align: center;
+}
+ol:after {
+  clear: both;
+  display: block;
+  content: "";
 }
